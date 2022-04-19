@@ -16,6 +16,13 @@ use Tavy315\SyliusCustomerPoolsPlugin\Repository\CustomerPoolRepository;
 
 final class Configuration implements ConfigurationInterface
 {
+    private $model;
+
+    public function __construct($model)
+    {
+        $this->model = $model;
+    }
+
     public function getConfigTreeBuilder(): TreeBuilder
     {
         $treeBuilder = new TreeBuilder('tavy315_sylius_customer_pools');
@@ -46,7 +53,7 @@ final class Configuration implements ConfigurationInterface
                             ->arrayNode('classes')
                                 ->addDefaultsIfNotSet()
                                 ->children()
-                                        ->scalarNode('model')->defaultValue("%tavy315_sylius_customer_pools.model.customer_pool.class%")->cannotBeEmpty()->end()
+                                        ->scalarNode('model')->defaultValue($this->model)->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(CustomerPoolType::class)->cannotBeEmpty()->end()

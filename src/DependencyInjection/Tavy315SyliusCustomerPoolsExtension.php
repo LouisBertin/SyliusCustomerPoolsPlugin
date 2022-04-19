@@ -11,6 +11,11 @@ use Symfony\Component\DependencyInjection\Loader\XmlFileLoader;
 
 final class Tavy315SyliusCustomerPoolsExtension extends AbstractResourceExtension
 {
+    public function getConfiguration(array$config, ContainerBuilder $container)
+    {
+        return new Configuration($container->getParameter('tavy315_sylius_customer_pools.model.customer_pool.class'));
+    }
+
     public function load(array $config, ContainerBuilder $container): void
     {
         $config = $this->processConfiguration($this->getConfiguration([], $container), $config);
