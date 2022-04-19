@@ -46,7 +46,7 @@ final class Configuration implements ConfigurationInterface
                             ->arrayNode('classes')
                                 ->addDefaultsIfNotSet()
                                 ->children()
-                                        ->scalarNode('model')->defaultValue(CustomerPool::class)->cannotBeEmpty()->end()
+                                        ->scalarNode('model')->defaultValue("%tavy315_sylius_customer_pools.model.customer_pool.class%")->cannotBeEmpty()->end()
                                         ->scalarNode('controller')->defaultValue(ResourceController::class)->cannotBeEmpty()->end()
                                         ->scalarNode('factory')->defaultValue(Factory::class)->end()
                                         ->scalarNode('form')->defaultValue(CustomerPoolType::class)->cannotBeEmpty()->end()
